@@ -8,7 +8,7 @@ Ensure NodeJS has been installed.
 
 ### Install
 
-> git clone https://github.com/ZhYong10/stock-announcement-downloader.git && npm install
+> git clone https://github.com/ZhYong10/stock-announcement-downloader.git && cd stock-announcement-downloader && npm install
 
 ### Run
 

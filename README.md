@@ -16,3 +16,7 @@ Ensure NodeJS has been installed.
 
 ### View
 Then view announcements in ./files/000858
+
+## About
+
+It's created for 续续.

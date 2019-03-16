@@ -12,8 +12,9 @@ const getFromSH = require('./sse'),
     getFromSZ = require('./szse'),
     download = require('./download');
 
-let symbol = '002020',
+// let symbol = '002020',
 // let symbol = '600020',
+let symbol = process.argv[2],
     dir = './files/';
 
 let urls = [];

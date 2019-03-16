@@ -4,6 +4,8 @@ Donwload announcement from sse and szse.
 
 ## Usages
 
+Ensure NodeJS has been installed.
+
 ### Install
 
 > git clone https://github.com/ZhYong10/stock-announcement-downloader.git

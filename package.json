@@ -1,0 +1,16 @@
+{
+  "name": "stock-announcement-downloader",
+  "version": "1.0.0",
+  "description": "下载上市公司公告",
+  "main": "index.js",
+  "scripts": {
+
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "axios": "^0.18.0",
+    "moment": "^2.24.0",
+    "puppeteer": "^1.13.0"
+  }
+}

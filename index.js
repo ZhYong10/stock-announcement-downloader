@@ -17,7 +17,7 @@ const getFromSH = require('./sse'),
 let symbol = process.argv[2],
     dir = './files/';
 
-let urls = [];
+let announcements = [];
 
 (async function () {
     let stock_basic = await axios.post('http://api.tushare.pro/', {
@@ -34,22 +34,22 @@ let urls = [];
 
     let end = moment().add(1, 'day').format('YYYY-MM-DD');
 
-    let urls = [];
+    let announcements = [];
     // while (end > listDate) {
     {
         let start = moment(end, 'YYYY-MM-DD').add(-1000, 'day').format('YYYY-MM-DD');
 
         if (symbol.startsWith('6')) {
-            urls = await getFromSH(symbol, start, end);
+            announcements = await getFromSH(symbol, start, end);
         } else {
-            urls = await getFromSZ(symbol, start, end);
+            announcements = await getFromSZ(symbol, start, end);
         }
 
         end = moment(start, 'YYYY-MM-DD').add(1, 'day').format('YYYY-MM-DD');
     }
     // }
-    console.log(urls.length, 'records');
-    console.log(urls);
+    console.log(announcements.length, 'records');
+    console.log(announcements);
 
     if (!fs.existsSync(dir)) {
         fs.mkdirSync(dir);
@@ -60,12 +60,14 @@ let urls = [];
         fs.mkdirSync(dirOfSymbol);
     }
 
-    for (let url of urls) {
-        console.log('progress:', urls.indexOf(url), '/', urls.length);
-        console.log('start download:', url);
-        await download(dirOfSymbol, url);
-        console.log('downloaded:', url);
+    for (let announcement of announcements) {
+        console.log('progress:', announcements.indexOf(announcement), '/', announcements.length);
+        let fileName = announcement.date + ' ' + announcement.title + '.pdf';
+
+        await download(dirOfSymbol, announcement.url, fileName);
     }
+
+    console.log(`Announcements download finished for { symbol:${symbol} ,start : ${start} ,end : ${end} }.`)
 })();
 
 

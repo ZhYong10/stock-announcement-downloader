@@ -4,7 +4,7 @@
 const puppeteer = require('puppeteer');
 
 module.exports = async function getFromSH(symbol, start, end) {
-    let urls = [];
+    let announcements = [];
     const browser = await puppeteer.launch({
         headless: true
     });
@@ -44,7 +44,11 @@ module.exports = async function getFromSH(symbol, start, end) {
 
         let result = await response.json();
 
-        urls = urls.concat(result.data.map(c => c.attachPath));
+        announcements = announcements.concat(result.data.map(item => ({
+            url: 'http://disc.static.szse.cn/download/' + item.attachPath,
+            title: item.title,
+            date: item.publishTime.substr(0, 10)
+        })));
 
         return result;
     }
@@ -68,5 +72,5 @@ module.exports = async function getFromSH(symbol, start, end) {
 
     await browser.close();
 
-    return urls.map(url => ('http://disc.static.szse.cn/download/' + url));
+    return announcements;
 }

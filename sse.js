@@ -4,7 +4,7 @@
 const puppeteer = require('puppeteer');
 
 module.exports = async function getFromSH(symbol, start, end) {
-    let urls = [];
+    let announcements = [];
     const browser = await puppeteer.launch({
         headless: true
     });
@@ -35,7 +35,11 @@ module.exports = async function getFromSH(symbol, start, end) {
 
         result = JSON.parse(result.replace(/^jsonpCallback[0-9]*\(/, '').replace(/\)$/, ''));
 
-        urls = urls.concat(result.result.map(c => c.URL));
+        announcements = announcements.concat(result.result.map(c => ({
+            url: 'http://static.sse.com.cn' + c.URL,
+            date: c.SSEDate,
+            title: c.title
+        })));
 
         return result;
     }
@@ -67,5 +71,5 @@ module.exports = async function getFromSH(symbol, start, end) {
 
     await browser.close();
 
-    return urls.map(url => ('http://static.sse.com.cn' + url));
+    return announcements;
 }

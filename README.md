@@ -15,7 +15,10 @@ Ensure NodeJS has been installed.
 > node index.js 000858
 
 ### View
+
 Then view announcements in ./files/000858
+
+![](./img/result.png)
 
 ## About
 

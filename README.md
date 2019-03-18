@@ -4,7 +4,7 @@ Donwload announcement from sse and szse.
 
 ## Usages
 
-Ensure NodeJS has been installed.
+Ensure [NodeJS](https://nodejs.org/zh-cn/download/) and [Git](https://git-scm.com/downloads) has been installed.
 
 ### Install
 

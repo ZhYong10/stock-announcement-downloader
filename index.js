@@ -36,17 +36,15 @@ let announcements = [];
 
     let announcements = [];
     // while (end > listDate) {
-    {
-        let start = moment(end, 'YYYY-MM-DD').add(-1000, 'day').format('YYYY-MM-DD');
+    let start = moment(end, 'YYYY-MM-DD').add(-1000, 'day').format('YYYY-MM-DD');
 
-        if (symbol.startsWith('6')) {
-            announcements = await getFromSH(symbol, start, end);
-        } else {
-            announcements = await getFromSZ(symbol, start, end);
-        }
-
-        end = moment(start, 'YYYY-MM-DD').add(1, 'day').format('YYYY-MM-DD');
+    if (symbol.startsWith('6')) {
+        announcements = await getFromSH(symbol, start, end);
+    } else {
+        announcements = await getFromSZ(symbol, start, end);
     }
+
+    end = moment(start, 'YYYY-MM-DD').add(1, 'day').format('YYYY-MM-DD');
     // }
     console.log(announcements.length, 'records');
     console.log(announcements);
